@@ -3,7 +3,7 @@
 #include<sys/time.h>
 using namespace std;
 //#include<stdlib.h>
-const int n = 1000;
+const int n = 10;
 const double MAX = 999999, MIN = -999999;
 double x[n][n];
 double y[n];
