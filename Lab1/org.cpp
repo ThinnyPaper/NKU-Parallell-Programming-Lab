@@ -2,8 +2,8 @@
 #include<iostream>
 #include<sys/time.h>
 using namespace std;
-//#include<stdlib.h>
-const int n = 10;
+const int n = 100;//size
+const int r = 1000;//repeat time
 const double MAX = 999999, MIN = -999999;
 double x[n][n];
 double y[n];
@@ -39,28 +39,28 @@ void improve() {
 		}
 	}
 }
-void ifright() {
-	for (int i = 0; i < n; i++) {
-		if (res1[i] != res2[i])
-			cout << "Wrong";
-	}
-}
+
 int main()
 {
 	init();
 	struct  timeval   tv_begin,tv_end;
 	gettimeofday(&tv_begin,NULL);
-	improve();
+	for(int i=0;i<r;i++){
+		normal();
+	}
 	gettimeofday(&tv_end,NULL);
-	cout<<tv_end.tv_sec-tv_begin.tv_sec<<' '<<tv_end.tv_usec-tv_begin.tv_usec<<endl;
+	cout.precision(10);
+	cout<<"Normal:"<<(((double)tv_end.tv_sec-(double)tv_begin.tv_sec)*1000+((double)tv_end.tv_usec-(double)tv_begin.tv_usec)/1000)/r<<"ms"<<endl;
 
 
-	init();
+	//init();
 	gettimeofday(&tv_begin,NULL);
-	normal();
+	for(int i=0;i<r;i++){
+		improve();
+	}
 	gettimeofday(&tv_end,NULL);
 	
-	cout<<tv_end.tv_sec-tv_begin.tv_sec<<' '<<tv_end.tv_usec-tv_begin.tv_usec<<endl;
+	cout<<"Optim:"<<(((double)tv_end.tv_sec-(double)tv_begin.tv_sec)*1000+((double)tv_end.tv_usec-(double)tv_begin.tv_usec)/1000)/r<<"ms"<<endl;
 	
 }
 
